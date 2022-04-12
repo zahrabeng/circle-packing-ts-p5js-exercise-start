@@ -1,3 +1,12 @@
+interface Circle {
+  pos: Position;
+  radius: number;
+}
+interface Position {
+  x: number;
+  y: number;
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noLoop();
@@ -11,7 +20,7 @@ function draw() {
   }
 }
 
-function calculatePackedCircles() {
+function calculatePackedCircles(): Circle[] {
   //TODO: you need to implement this function properly!
   return [
     { pos: { x: 300, y: 300 }, radius: 100 },
