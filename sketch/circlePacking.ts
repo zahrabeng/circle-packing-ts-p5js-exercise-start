@@ -35,9 +35,11 @@ function randomPosition() {
         y: random(height)
     }
 }
+
 function noOverlapWithAny(circle: Circle, otherCircles: Circle[]): boolean {
     return !otherCircles.some(other => overlap(circle, other));
 }
+
 function overlap(c1: Circle, c2: Circle): boolean {
     return distance(c1.pos, c2.pos) < c1.radius + c2.radius;
 }
