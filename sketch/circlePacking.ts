@@ -7,7 +7,7 @@ interface Position {
     y: number;
 }
 
-function calculatePackedCircles(): Circle[] {
+function calculatePackedCircles(areaWidth: number, areaHeight: number): Circle[] {
     const circles: Circle[] = [];
 
     for (let i = 0; i < 100000; i++) {
