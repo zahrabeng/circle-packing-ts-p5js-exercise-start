@@ -7,7 +7,7 @@ interface Position {
     y: number;
 }
 
-function calculatePackedCircles(): Circle[] {
+function calculatePackedCircles(areaWidth: number, areaHeight: number): Circle[] {
     //TODO: you need to implement this function properly!
     return [
         { pos: { x: 300, y: 300 }, radius: 100 },
