@@ -6,8 +6,10 @@ interface Position {
     x: number;
     y: number;
 }
+//The exact function we use can be chosen from a few implementations
+let calculatePackedCircles = calculatePackedCircles1;
 
-function calculatePackedCircles(areaWidth: number, areaHeight: number): Circle[] {
+function calculatePackedCircles2(areaWidth: number, areaHeight: number): Circle[] {
     const maxRadius = min(areaHeight, areaWidth) * 0.2;
     const circles: Circle[] = [];
     for (let i = 0; i < 10000; i++) {
