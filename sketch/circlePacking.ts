@@ -8,11 +8,15 @@ interface Position {
 }
 
 function calculatePackedCircles(): Circle[] {
-    //TODO: you need to implement this function properly!
-    return [
-        { pos: { x: 300, y: 300 }, radius: 100 },
-        { pos: { x: 100, y: 100 }, radius: 20 },
-    ];
+    const circles: Circle[] = [];
+
+    for (let i = 0; i < 100000; i++) {
+        const candidate = { pos: randomPosition(), radius: random(10, 100) }
+        if (noOverlapWithAny(candidate, circles)) {
+            circles.push(candidate)
+        }
+    }
+    return circles;
 }
 
 /** Returns the distance between two given positions.
@@ -23,4 +27,17 @@ function distance(p1: Position, p2: Position): number {
     const y = p1.y - p2.y;
     const hyp = Math.sqrt(x * x + y * y);
     return hyp;
+}
+
+function randomPosition() {
+    return {
+        x: random(width),
+        y: random(height)
+    }
+}
+function noOverlapWithAny(circle: Circle, otherCircles: Circle[]): boolean {
+    return !otherCircles.some(other => overlap(circle, other));
+}
+function overlap(c1: Circle, c2: Circle): boolean {
+    return distance(c1.pos, c2.pos) < c1.radius + c2.radius;
 }
