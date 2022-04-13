@@ -8,6 +8,32 @@ interface Position {
 }
 
 function calculatePackedCircles(areaWidth: number, areaHeight: number): Circle[] {
+    const maxRadius = min(areaHeight, areaWidth) * 0.2;
+    const circles: Circle[] = [];
+    for (let i = 0; i < 10000; i++) {
+
+        const candidate = { pos: randomPosition(), radius: 0 }
+        if (noOverlapWithAny(candidate, circles)) {
+            const nearestCircle = findNearestApproaching(candidate.pos, circles);
+            if (!nearestCircle) {
+                candidate.radius = random(0, maxRadius);
+            } else {
+                const distToNearestEdge = distance(candidate.pos, nearestCircle.pos) - nearestCircle.radius;
+                candidate.radius = min(distToNearestEdge, maxRadius);
+            }
+            circles.push(candidate);
+        }
+    }
+    return circles;
+}
+function findNearestApproaching(pos: Position, circles: Circle[]): Circle | null {
+    if (circles.length === 0) {
+        return null;
+    }
+    return minBy(circles, c => distance(c.pos, pos) - c.radius);
+
+}
+function calculatePackedCircles1(areaWidth: number, areaHeight: number): Circle[] {
     const circles: Circle[] = [];
 
     for (let i = 0; i < 100000; i++) {
